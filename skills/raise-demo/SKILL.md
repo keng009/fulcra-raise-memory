@@ -58,7 +58,7 @@ Generate a read-only mini-snapshot of their last 30 days. The snapshot performs 
 1. Sweep the calendar window in weekly chunks (never one giant query); with a transcript tool, list the window's transcripts too.
 2. Keep meetings with external attendees; group by company via attendee email domains and names; drop solo blocks, declined events (unless another source shows the meeting actually happened — sources beat RSVP status), and personal noise.
 3. Present it compactly: **Funds engaged** (with counts), **People you're spending time on**, **Loose ends** (meetings with no follow-up trace), and — transcripts permitting — a couple of one-line what-was-said highlights. End with the commit ledger: one line per item (`Person — date — source — one-line gist`), split into **Will save** and **Parked for review** — the yes covers exactly these lines and nothing else. A few sentences of framing, not a report: this was generated from their own month, before anything was stored.
-4. Offer the save: "Want me to keep this as your memory? One yes saves the clear matches — files are versioned, and the full raise-memory skill adds a veto that can strike any saved item later (struck items are excluded from every read; the records themselves have no per-record delete and stay stored). Anything I'm unsure about gets parked in a review queue, not guessed." On yes: write the clearly-matched touchpoints using the formats below — creating the folder files and the data type first as needed, calendar-derived keys as `touch:cal:<event-id>` (the event's stable id, so a re-run reproduces the same keys), backfill entries carrying `evidence` that names the source exactly (`calendar backfill`) and creating no open follow-ups. Park each unsure item as a row in `/raise/review-queue.md` (create it per the folder-files section if absent). Then give a one-line commit summary — who was saved, what was parked and why — and go to the payoff using the most interesting saved person.
+4. Offer the save: "Want me to keep this as your memory? One yes saves the clear matches — files are versioned, and the full raise-memory skill adds a veto that can strike any saved item later (struck items are excluded from every read these skills perform; the records themselves have no per-record delete and stay stored). Anything I'm unsure about gets parked in a review queue, not guessed." On yes: write the clearly-matched touchpoints using the formats below — creating the folder files and the data type first as needed, calendar-derived keys as `touch:cal:<event-id>` (the event's stable id, so a re-run reproduces the same keys), backfill entries carrying `evidence` that names the source exactly (`calendar backfill`) and creating no open follow-ups. Park each unsure item as a row in `/raise/review-queue.md` (create it per the folder-files section if absent). Then give a one-line commit summary — who was saved, what was parked and why — and go to the payoff using the most interesting saved person.
 5. On no, or if the snapshot looks thin: fall through to Path B with one touchpoint of their choosing — the demo still works.
 
 ### Path B — Conversational capture (no sources, or by choice)
@@ -71,7 +71,7 @@ Ask about a recent conversation with an investor — a GP, an angel, an associat
 4. What was discussed — a few sentences?
 5. Any follow-ups you own?
 
-If they have nothing to log, offer the sample touchpoint and say clearly that it is sample data — including, BEFORE they agree: the sample file can be deleted afterward (a soft delete), but the sample typed record has no per-record delete through this connector — cleanup tombstones its key instead, so it sits inert AND excluded from every read these skills perform. The sample: person **Alex Rivera**, company **Meridian Capital** (GP), channel `call`, dated yesterday, summary "Sample: intro call about the seed round; Alex asked for the deck and current metrics, and offered an intro to their fintech partner.", stage noted `diligence` (volunteered), follow-up "Send Alex the deck and metrics (sample)". In the file, its Context line must read: `Sample contact created by the raise-demo skill — not a real person. Delete freely.`
+If they have nothing to log, offer the sample touchpoint and say clearly that it is sample data — including, BEFORE they agree: the sample file can be deleted afterward (a soft delete), but the sample typed record has no per-record delete through this connector — cleanup tombstones its key instead, so it sits inert AND excluded from every read these skills perform. The sample: person **Alex Rivera**, company **Meridian Capital** (GP), channel `call`, dated yesterday, summary "Sample: intro call about the seed round; Alex asked for the deck and current metrics, and offered an intro to their fintech partner.", stage noted `intro` (volunteered), follow-up "Send Alex the deck and metrics (sample)". In the file, its Context line must read: `Sample contact created by the raise-demo skill — not a real person. Delete freely.`
 
 Sample re-run rule: because the sample is dated relative to today, its exact key changes between days — so for the sample touchpoint, the dedupe scan matches ANY existing `touch:alex-rivera:` key or the sample Context marker line, not just today's key. A re-run must never add a second sample block.
 
@@ -132,7 +132,7 @@ Rule: no credentials, tokens, or secrets are ever written to any file in
 this folder.
 ```
 
-`/raise/INDEX.md` — one line per file, same heading and line format the raise-memory skill uses (the demo does not create `handoff.md`; the full skill adds it and its INDEX line on its own first run):
+`/raise/INDEX.md` — one line per file, same heading and line format the raise-memory skill uses (during the session the demo does not create `handoff.md` — the full skill adds it on its own first run; the ONE exception is sample cleanup, which creates it from the template below to tombstone the sample):
 
 ```markdown
 # /raise/ index
@@ -143,6 +143,27 @@ this folder.
 ```
 
 If `INDEX.md` already exists, add one line for the relationship file you just created (if it's new) and leave the rest untouched.
+
+`/raise/handoff.md` (created ONLY by sample cleanup, for the veto tombstone — identical to the full skill's template; add its INDEX line `- handoff.md — open follow-ups, pending intros, next actions, vetoed keys, sweep watermarks` when creating it):
+
+```markdown
+# Handoff
+
+## Open follow-ups
+(none yet)
+
+## Pending intros
+(none yet)
+
+## Next actions
+(none yet)
+
+## Vetoed keys
+(none yet)
+
+## Sweep watermarks
+(none yet)
+```
 
 `/raise/review-queue.md` (Path A only, and only when the save parked at least one unsure item — same format the full skill uses; add its `INDEX.md` line too):
 
@@ -174,7 +195,7 @@ Schema example — fill every field from the touchpoint actually captured above 
   "company": "Meridian Capital",
   "channel": "call",
   "summary": "Sample: intro call about the seed round; Alex asked for the deck and current metrics, and offered an intro to their fintech partner.",
-  "stage_noted": "diligence",
+  "stage_noted": "intro",
   "follow_ups": ["Send Alex the deck and metrics (sample)"],
   "producer": "raise-demo",
   "evidence": "user account",
@@ -208,4 +229,4 @@ Close in a few lines, no push:
 - This persisted — the file and the record stay in their account after this chat ends.
 - The **raise-memory** skill uses the same folder and the same formats, so today's touchpoint carries over as-is, zero migration. It adds daily capture ("log my call with …"), meeting prep ("prep me for …"), weekly reporting ("what moved this week"), stale-relationship alerts, calendar awareness, and optional one-way CRM sync.
 - To install it: same steps as this skill, with the `raise-memory` folder.
-- If they logged the sample touchpoint, offer cleanup — three parts, narrated plainly: (1) soft-delete the sample relationship file (`delete_file`, reversible) and remove its `INDEX.md` line; (2) the sample typed record has no per-record delete through this connector, so (3) tombstone it — create `/raise/handoff.md` from the full skill's template if it doesn't exist and add the sample's key under `## Vetoed keys` — which leaves the record stored but excluded from every read these skills perform. Without the tombstone, sample data would surface in future reports; with it, it cannot.
+- If they logged the sample touchpoint, offer cleanup — three parts, narrated plainly: (1) soft-delete the sample relationship file (`delete_file`, reversible) and remove its `INDEX.md` line; (2) the sample typed record has no per-record delete through this connector, so (3) tombstone it — create `/raise/handoff.md` from the template in the folder-files section if it doesn't exist (adding its INDEX line) and add the sample's key under `## Vetoed keys` — which leaves the record stored but excluded from every read these skills perform. Without the tombstone, sample data would surface in future reports; with it, it cannot.

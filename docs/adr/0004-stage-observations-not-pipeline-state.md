@@ -1,4 +1,4 @@
-# Deal stages are recorded as observations, never managed as pipeline state
+# Raise stages are recorded as observations, never managed as pipeline state
 
 Repositioning the packet as a raise tool (2026-08-26) wanted stage awareness — "what moved" is only meaningful against stages — but this repo's standing promise is that the user's CRM remains the system of record for pipeline, and sync never touches CRM stages or fields. We resolved the tension by adding `stage_noted`: an optional, as-of-that-conversation observation captured only when the user volunteers it ("they want to lead", "they passed", "partner meeting next week"), stored in the touchpoint's payload and as a `Stage noted:` narrative line. Reports may surface observations and changes between them, always labeled "per your notes". The skills never reconcile stages, never ask a dedicated stage question, and never write a stage anywhere in a CRM.
 

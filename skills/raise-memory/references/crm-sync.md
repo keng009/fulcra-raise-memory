@@ -6,7 +6,7 @@ CRM involvement is optional and detected, never required. If no CRM tools are co
 
 ## Capability tiers — a CRM qualifies by what its tools can do, not by name
 
-Map whatever CRM tools are connected onto six capability slots (5 and 6 are optional):
+Map whatever CRM tools are connected onto seven capability slots (5–7 are optional):
 
 | Slot | Capability | Needed for |
 |---|---|---|
@@ -16,6 +16,7 @@ Map whatever CRM tools are connected onto six capability slots (5 and 6 are opti
 | 4 | Create a note on a contact | One-way sync |
 | 5 | Create a task linked to a contact (optional) | Follow-ups as tasks |
 | 6 | Associate a note with additional objects — deal/opportunity/company (optional) | Note placement where the tracker's users actually look |
+| 7 | Delete a note (optional, rare) | Veto cleanup of an already-synced copy — where absent, the veto gives the manual step |
 
 - **Tier R (slots 1–3, read-only)**: powers the snapshot's tracked-vs-untracked check and CRM-note import into memory. A Tier R CRM is a full read source — never offer sync for it. Example: HubSpot's official Claude connector.
 - **Tier W (slots 1–4, +5 where present)**: everything above plus one-way sync (notes, optional tasks).
@@ -65,6 +66,7 @@ The engine's reference implementation: tested against a live Attio workspace via
 | Read a note body | `get-note-body` |
 | Create a note | `create-note` (person record as parent) |
 | Create a task | `create-task` (linked to the contact) |
+| Delete a note | none — removal is manual in the Attio UI (the veto says exactly which note) |
 
 - **Contact lookup**: search people records by email, then by name (connector tool: `search-records` on the people object, or the equivalent contact-search tool your connector exposes).
 - **Idempotency mechanics**: Attio notes have **no custom fields**, so there is nowhere structured to put an idempotency key. The key therefore lives in two plain-text places: the note **title suffix** (`[touch:alex-rivera:2026-08-20]`) and the **`Source:` body line**. The dedupe check is the title: before writing, list the matched person record's existing notes (`search-notes-by-metadata` filtered to that record, or the equivalent) and scan each title for the exact key string. Found → skip, tell the user. Not found → write.
@@ -99,7 +101,7 @@ Same principles; not yet verified.
 
 ## Say so in conversation
 
-When syncing to any CRM other than Attio, state the status honestly before the first write, in words like: "CRM sync was tested against Attio. <CRM> support follows the same design but is untested — I'll verify the first write by reading it back." Then actually do the read-back. Never present an untested integration as tested.
+When syncing to ANY CRM under this packet — Attio included — state the status honestly before the first write, in words like: "CRM sync was engine-tested with Attio in the sibling packet; under this packet <CRM> is untested — I'll verify the first write by reading it back." Then actually do the read-back. Never present an untested integration as tested, and never present the sibling's evidence as this packet's.
 
 ## Add your CRM — the 10-minute promotion protocol
 
@@ -109,7 +111,7 @@ Anyone with a CRM connector can add their CRM to this file and promote it to `te
 2. **Run the write test** (Tier W): pick one contact you own, ask the skill to log a touchpoint and sync it. Verify: the note lands with the key in its title (or first body line for title-less primitives), and the body follows the Note format above.
 3. **Run the dedupe test**: sync the same touchpoint again. Expected: the title scan finds the key and the skill writes nothing, saying so.
 4. **Run the import + circularity test** (Tier R and W): create one hand-written note on that contact, ask the skill to import CRM notes for them. Expected: the hand-written note imports under `touch:<crm>-note:<id>`; the skill-written sync note is refused (its title carries `[touch:` — the circularity guard).
-5. **Record it, sanitized**: add a dated table to `docs/testing.md` (no real names — "a contact in a test workspace"), following the existing Attio rows as the format.
+5. **Record it, sanitized**: add a dated table to `docs/testing.md` (no real names — "a contact in a test workspace"), using the row format of the sibling packet's testing matrix — this repo's testing.md gains its first CRM rows through exactly this protocol.
 6. **PR the registry entry**: a section in this file titled `## <CRM> (Tier R|W — tested)` with the slot table, quirks (title-less notes? no delete tool? markdown support?), and a pointer to your testing.md rows. CI validates links; a maintainer sanity-checks claims against rule 2 of `CONTRIBUTING.md` (every claim maps to a demonstrated behavior).
 
 A failed step is still a contribution: file an issue with the step, the tool called, and what came back.

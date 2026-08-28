@@ -1,6 +1,6 @@
 # Idempotency keys live in note titles, not structured fields
 
-Every touchpoint's dedupe key (`touch:<person-slug>:<date>`) is carried as a plain-text suffix in the CRM note **title** (and in relationship-file entry headings), and the before-write check is a title scan. We'd have preferred a structured field, but Attio — the tested CRM — supports no custom fields on notes at all, and a title-borne key generalizes to any CRM whose note primitive the connector can write and read back (with a first-body-line fallback for title-less primitives). One mechanism everywhere beats a per-CRM schema feature we can't rely on existing.
+Every touchpoint's dedupe key (`touch:<person-slug>:<date>`) is carried as a plain-text suffix in the CRM note **title** (and in relationship-file entry headings), and the before-write check is a title scan. We'd have preferred a structured field, but Attio — the engine-tested CRM, in the sibling packet (ADR-0007) — supports no custom fields on notes at all, and a title-borne key generalizes to any CRM whose note primitive the connector can write and read back (with a first-body-line fallback for title-less primitives). One mechanism everywhere beats a per-CRM schema feature we can't rely on existing.
 
 **Status**: accepted.
 
