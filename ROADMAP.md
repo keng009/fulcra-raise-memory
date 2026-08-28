@@ -12,7 +12,7 @@ The capability-based adapter layers came over from the fork point; none is exerc
 
 ## Toward automatic — without losing consent
 
-- **Scheduled message-sweep digest** ([#5](https://github.com/keng009/fulcra-raise-memory/issues/5)): investors go quiet in DMs, not email — a recurring sweep presenting a one-yes delta catches it.
+- **Scheduled message-sweep digest** ([#5](https://github.com/keng009/fulcra-raise-memory/issues/5)): the behavior is now specified in the full skill (Tend rule 5) — investors go cold in DMs, not email; what remains is the live scheduled run that promotes it from designed to tested.
 - **Notes on the fund's deal/opportunity object** ([#6](https://github.com/keng009/fulcra-raise-memory/issues/6)): each tracker's own object model, never touching fields or stages.
 - Zero-touch auto-commit stays out of scope until its own ADR (consent-posture change, per-user opt-in).
 

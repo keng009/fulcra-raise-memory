@@ -60,14 +60,14 @@ Writing a captured touchpoint as both its entry and its typed record in one pass
 What either skill does at the start of a fresh session: inspect the Fulcra data catalog and the `/raise/` folder, detect connected sources, and state what it found before acting.
 
 **Capture / Recall / Report**:
-The full skill's three behaviors: log a touchpoint; brief the user on a person ("prep me for X"); summarize a period ("what moved this week"), including the going-quiet list.
+The full skill's three behaviors: log a touchpoint; brief the user on a person ("prep me for X"); summarize a period ("what moved this week"), including the going-cold list.
 
 **Going cold**:
 The state of a relationship whose latest touchpoint is 45+ days old; surfaced by Report.
 _Avoid_: stale (in user-facing output; fine internally)
 
 **Stage noted**:
-An optional, as-of-that-conversation observation of where a deal stands, captured only when the user volunteers it. Narrative, never managed pipeline state — the user's CRM owns pipeline (ADR-0004).
+An optional, as-of-that-conversation observation of where an investor stands in the raise, captured only when the user volunteers it. Narrative, never managed pipeline state — the user's CRM owns pipeline (ADR-0004).
 _Avoid_: stage (bare, implying managed state), pipeline stage
 
 **Source level**:
@@ -92,8 +92,8 @@ Committing touchpoints from past activity (calendar, transcripts, CRM notes) rat
 **Review queue**:
 `/raise/review-queue.md` — where ambiguous commit items wait for the user's ruling, each with its evidence. Parked items exist nowhere else until ruled on.
 
-**Sourcing check**:
-The "talked to this fund before?" lookup at intro time: direct hits, the user's own past judgment, labeled inferences, and a read-only CRM presence check. A read; never writes.
+**Fund history check**:
+The "talked to this fund before?" lookup when a new investor appears: direct hits, the user's own past judgment, labeled inferences, and a read-only CRM presence check. A read; never writes.
 
 **Tend**:
 The ongoing mode after commit: small deltas offered in one line, vetoes honored immediately, the review queue surfaced occasionally — seconds per day, never a project.

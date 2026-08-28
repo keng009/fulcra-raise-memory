@@ -14,7 +14,7 @@ These skills could not be honest instruction files without a place to put memory
 
 ## What that buys you mid-raise
 
-- **Memory that outlives the chat — and the round.** A raise runs for months across dozens of investor threads. Conversations end; the account doesn't. Everything logged is there next session, next month, and at the next round, when "what did Meridian pass on last time and why" is worth real money.
+- **Memory that outlives the chat — and the round.** A raise runs for months across dozens of investor threads. Conversations end; the account doesn't. Everything logged is there next session, next month, and at the next round, when "why Meridian passed last time, and what they said" is worth real money.
 - **Cross-assistant memory — the part nothing else provides.** The same files and records are readable by any assistant connected to your account over MCP. Log a call in Claude, ask ChatGPT "what does Alex care about?" — same memory, no re-teaching. Chat products' built-in memories are silos by design; this one is yours.
 - **Momentum you can query.** "What moved this week" and the investors-going-cold list are one windowed query over typed records — not a re-read of every file (ADR-0006). During a raise, cold threads are the round quietly dying; a queryable memory surfaces them on time.
 - **Reversibility you can bank on.** The one-yes batch commit (ADR-0005) is only honest because files are versioned and soft-deletable — the consent model leans directly on the storage's properties.

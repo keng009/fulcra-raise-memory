@@ -6,7 +6,7 @@ CRM involvement is optional and detected, never required. If no CRM tools are co
 
 ## Capability tiers — a CRM qualifies by what its tools can do, not by name
 
-Map whatever CRM tools are connected onto five capability slots:
+Map whatever CRM tools are connected onto six capability slots (5 and 6 are optional):
 
 | Slot | Capability | Needed for |
 |---|---|---|
@@ -54,9 +54,9 @@ A CRM not named in this file still works if its connector fills the slots — fo
 
 - **Note placement (slot 6 — optional, designed, untested)**: where the CRM's note primitive supports additional parents or associations, the note MAY also be associated to the most relevant *existing* deal/opportunity object — for a raise, usually the fund's deal or opportunity row (HubSpot deals; Attio deal-list records; Affinity opportunities). Which object is relevant is asked when ambiguous, never guessed (park in the review queue if unclear). Associating a note is not editing the object: fields, stages, amounts, and owners remain untouched (ADR-0004), and nothing is ever created to have somewhere to put the note.
 
-## Attio (Tier W — tested)
+## Attio (Tier W — engine-tested in the sibling packet)
 
-Tested against a live Attio workspace via the official Attio connector (write path 2026-08-20; CRM-note import + circularity guard 2026-08-27 — see `docs/testing.md`). This is the reference implementation of the principles above.
+The engine's reference implementation: tested against a live Attio workspace via the official Attio connector — in the sibling packet (see its testing matrix; design evidence only per ADR-0007). Under this flavor Attio is UNTESTED like every other CRM — say so on first use and verify the first write by reading it back.
 
 | Slot | Attio tool |
 |---|---|
@@ -86,7 +86,7 @@ Same principles; not yet verified against a live workspace.
 
 Same principles; not yet verified. Notion's official connector is read/write.
 
-- Many investors run their pipeline as a Notion database of people or deals. **Ask the user which database holds their contacts** — never guess; it is searched for the contact match only.
+- Many founders run their raise tracker as a Notion database of investors. **Ask the user which database holds their investor contacts** — never guess; it is searched for the contact match only.
 - **Scope (keeps the "notes and tasks only" promise honest)**: the ONLY write is a block appended to the matched contact's existing page — the note-equivalent. Never create pages or rows in the user's databases, and never add properties to their schema; both count as creating CRM objects, which this sync never does. If the user's setup has no per-contact page to append to, say so and skip Notion sync rather than inventing structure.
 - Put the key in the first line of the appended block. Dedupe scan = read the contact page's existing blocks and look for the key. Verify the first write by reading it back (as with any title-less primitive).
 
@@ -94,7 +94,7 @@ Same principles; not yet verified. Notion's official connector is read/write.
 
 Same principles; not yet verified.
 
-- Affinity has an official **read/write** Claude connector (verified 2026-08-21) that supports creating notes on records — making it a strong candidate for the next tested CRM, since it is the VC-native one.
+- Affinity has an official **read/write** Claude connector (verified 2026-08-21) that supports creating notes on records. Affinity is the VC-native CRM — relevant here mainly when a fund's team runs the process there — so it sits later in this repo's founder-first testing order (see ROADMAP).
 - **Closest primitive**: a note attached to a person. If the note primitive has no title field, use the first-line-of-body placement and read-back verification described under HubSpot.
 
 ## Say so in conversation
@@ -105,7 +105,7 @@ When syncing to any CRM other than Attio, state the status honestly before the f
 
 Anyone with a CRM connector can add their CRM to this file and promote it to `tested`:
 
-1. **Map the slots.** List your connector's tools and fill the five capability slots above. Slots 1–3 only → your CRM is Tier R (still valuable — say so in its section). No slot-1 tool → the CRM can't participate; stop here.
+1. **Map the slots.** List your connector's tools and fill the capability slots above. Slots 1–3 only → your CRM is Tier R (still valuable — say so in its section). No slot-1 tool → the CRM can't participate; stop here.
 2. **Run the write test** (Tier W): pick one contact you own, ask the skill to log a touchpoint and sync it. Verify: the note lands with the key in its title (or first body line for title-less primitives), and the body follows the Note format above.
 3. **Run the dedupe test**: sync the same touchpoint again. Expected: the title scan finds the key and the skill writes nothing, saying so.
 4. **Run the import + circularity test** (Tier R and W): create one hand-written note on that contact, ask the skill to import CRM notes for them. Expected: the hand-written note imports under `touch:<crm>-note:<id>`; the skill-written sync note is refused (its title carries `[touch:` — the circularity guard).

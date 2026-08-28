@@ -5,3 +5,5 @@ Repositioning the packet as a raise tool (2026-08-26) wanted stage awareness —
 **Status**: accepted.
 
 **Consequences**: stage data can be stale or contradictory across touchpoints — that's correct behavior for observations (the narrative reflects what was said when); anyone tempted to "fix" that by managing stage state is proposing to compete with the user's CRM, which this packet deliberately does not do. Renamed `firm` → `company` in the same contract revision (v2.1) — payload consumers must use `company`.
+
+**Fork note**: inherited from the sibling packet at the 2026-08-27 fork (ADR-0007); dates earlier than that refer to the sibling's history.

@@ -84,7 +84,7 @@ Before writing anything, recap in one line (person, company, channel, date, gist
 
 ### Scan before writing (per destination — self-healing)
 
-Call `list_files` under `/raise/`. If `/raise/relationships/<slug>.md` exists, `read_file` it; and if the Raise Touchpoint type exists in the catalog, `get_records` around the touchpoint date. Scan BOTH stores for BOTH key forms — the computed key, and (for a calendar-derived save) the person's date-form family `touch:<slug>:<date>` with its ordinals — since earlier data may carry either form. A match in ANY representation means confirm with the user, never assume: the **same conversation** → keep the stored key and write only whichever representations the scan showed missing (a half-completed earlier write — file without record, or record without file — heals here instead of duplicating); when nothing is missing, skip the writes, tell them this touchpoint was already logged, and go straight to step 4 using the stored data — that's the duplicate protection working, and it's worth one sentence saying so. A **different conversation** on the same day → append the next unused ordinal (`-2`, `-3`) to the date-form key and proceed with the writes as its own touchpoint.
+Load the veto set first, when `/raise/handoff.md` exists: read its `## Vetoed keys` list — a vetoed key (either form) is never re-imported by any save; drop that item and say so. Then call `list_files` under `/raise/`. If `/raise/relationships/<slug>.md` exists, `read_file` it; and if the Raise Touchpoint type exists in the catalog, `get_records` around the touchpoint date. Scan BOTH stores for BOTH key forms — the computed key, and (for a calendar-derived save) the person's date-form family `touch:<slug>:<date>` with its ordinals — since earlier data may carry either form. A match in ANY representation means confirm with the user, never assume: the **same conversation** → keep the stored key and write only whichever representations the scan showed missing (a half-completed earlier write — file without record, or record without file — heals here instead of duplicating); when nothing is missing, skip the writes, tell them this touchpoint was already logged, and go straight to step 4 using the stored data — that's the duplicate protection working, and it's worth one sentence saying so. A **different conversation** on the same day → append the next unused ordinal (`-2`, `-3`) to the date-form key and proceed with the writes as its own touchpoint.
 
 ### Write the narrative file
 
@@ -150,7 +150,8 @@ If `INDEX.md` already exists, add one line for the relationship file you just cr
 # Review queue
 
 Ambiguous items parked for the user's judgment. Each row carries its
-evidence. Written nowhere else until ruled on.
+evidence. Written nowhere else until ruled on. Ruling: log it properly,
+or drop it.
 
 | Parked | Item | Evidence | Why uncertain |
 |---|---|---|---|
@@ -174,7 +175,7 @@ Schema example — fill every field from the touchpoint actually captured above 
   "channel": "call",
   "summary": "Sample: intro call about the seed round; Alex asked for the deck and current metrics, and offered an intro to their fintech partner.",
   "stage_noted": "diligence",
-  "follow_ups": ["Send Alex the deck (sample)"],
+  "follow_ups": ["Send Alex the deck and metrics (sample)"],
   "producer": "raise-demo",
   "evidence": "user account",
   "recorded_at": "2026-08-20T17:30-04:00"

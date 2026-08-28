@@ -51,6 +51,7 @@ Exact formats:
 - Calendar-derived (commit/backfill from a calendar event): `touch:cal:<event-id>` — the source calendar's stable event id, so re-runs cannot shift keys and adding or removing another same-day event cannot re-order them. Cross-scan rule: before writing a calendar-derived touchpoint, scan for BOTH its `touch:cal:` key and the person's `touch:<person-slug>:<YYYY-MM-DD>` family — a match on either form means confirm, not assume (earlier data may carry date-form keys).
 - Source Level 3 (touchpoint logged from a meeting transcript): `touch:<transcript-id>` — the transcript's own id, so re-processing the same transcript cannot create a duplicate.
 - CRM-origin (touchpoint imported from an existing CRM note during commit/backfill): `touch:<crm>-note:<note-id>` — e.g. `touch:attio-note:2f6b2a2a…` — the note's stable id in that CRM. Circularity guard: never import a CRM note whose title already carries a `[touch:` key; that is this system's own sync output.
+- Messaging-thread origin (connector tier only): `touch:<tool>-thread:<id>` — the messaging tool's stable thread or message id, where one exists (see `messaging-capture.md`); pasted threads have no stable id and use the standard date-form key.
 
 Person slug rule: lowercase, hyphens, from person name (`alex-rivera`); append company slug only when two people collide (`alex-rivera-meridian`).
 
@@ -65,7 +66,7 @@ The rules:
 1. **Scan before every write, per destination.** Each representation is checked against its own store — the relationship file's text before a file write, the typed records (via `get_records`, matching payload `dedupe_key`) before a record write, the contact's existing CRM note titles before a CRM write. Write only the representations that are missing; this makes a partially completed earlier write self-healing on retry rather than half-skipped. When some representations existed and some were just filled in, say so.
 2. **A matched key means confirm, not assume.** When a capture's base key (or any of its ordinals) is already present in ANY representation, ask the user: same conversation → it is a duplicate, keep the stored key and write only the representations the scan showed missing (self-healing); a different conversation that day → use the next unused ordinal and log it as its own touchpoint.
 3. Never assume a write happens exactly once.
-4. **Load the veto set first.** Before any read of stored records or any commit write, read `## Vetoed keys` from `/raise/handoff.md`. A vetoed key never surfaces in any output (recall, report, sourcing, snapshot enrichment) and is never re-imported by any commit — including the self-healing path: a missing representation of a vetoed touchpoint is never recreated. This is the single veto invariant; every per-behavior mention is a reminder of this rule, not a separate rule.
+4. **Load the veto set first.** Before any read of stored records or any commit write, read `## Vetoed keys` from `/raise/handoff.md`. A vetoed key never surfaces in any output (recall, report, fund history, snapshot enrichment) and is never re-imported by any commit — including the self-healing path: a missing representation of a vetoed touchpoint is never recreated. This is the single veto invariant; every per-behavior mention is a reminder of this rule, not a separate rule.
 
 ## Raise Touchpoint data type
 
@@ -107,7 +108,7 @@ The snapshot is an on-the-fly analysis of the user's recent raise (default: the 
 
 - Calendar is read from EITHER surface, detected by capability: Fulcra's `get_calendar_events`, or any Claude-side calendar connector. Sweep the window in weekly chunks (payload rule).
 - Group findings by company (attendee email domains + names); filter noise: solo blocks, internal recurring meetings, and events with no external attendees. Skip events the user declined — unless another source (a transcript, a CRM note) shows the meeting actually happened; sources beat RSVP status. Named meetings with no attendee data are ambiguous, not evidence.
-- Going-quiet needs depth the display window lacks: when showing a 30-day snapshot, extend a headline-only sweep to ~60 days for the going-quiet check, or omit the section and say why.
+- Going-cold needs depth the display window lacks: when showing a 30-day snapshot, extend a headline-only sweep to ~60 days for the going-cold check, or omit the section and say why.
 - Transcript and CRM sources, where connected, enrich with what-was-said and tracked-vs-untracked gaps — reads only.
 - Degrade honestly: with fewer sources, say what is missing and what connecting it would add.
 

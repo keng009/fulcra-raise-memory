@@ -18,9 +18,9 @@ Thanks for working on the raise packet. This file is the 60-second orientation p
 
 3. **Live platform features only.** Nothing may reference or depend on unshipped Fulcra features (at time of writing: Entries, file-system-updates, Groups). If the platform ships something new, a change may adopt it only once it's verified live.
 
-4. **Findings that outlive a session get an issue.** A review finding fixed on the spot may live in the fixing commit's message — but anything deferred, declined-with-reasoning, or fixed across sessions gets a GitHub issue (a per-review tracking issue with a disposition table is fine, closed once every row points somewhere). Chat threads and PR comments are where findings are discussed, not where they are stored: if it only exists there, the other maintainers can't see it. Examples: #32, #33.
+4. **Findings that outlive a session get an issue.** A review finding fixed on the spot may live in the fixing commit's message — but anything deferred, declined-with-reasoning, or fixed across sessions gets a GitHub issue (a per-review tracking issue with a disposition table is fine, closed once every row points somewhere). Chat threads and PR comments are where findings are discussed, not where they are stored: if it only exists there, the other maintainers can't see it. Examples: the sibling repo's disposition issues, keng009/fulcra-dealflow-memory#32 and #33.
 
-5. **A coverage claim cites the check.** Closing an issue (or writing a commit message) that claims something is "covered", "enforced", or "tested" must point at the specific thing that proves it — the `validate.mjs` anchor, the CI check, or the dated `docs/testing.md` row. No pointer, no claim; this repo has already shipped one closed issue whose claimed validator coverage didn't exist (#21, caught by review).
+5. **A coverage claim cites the check.** Closing an issue (or writing a commit message) that claims something is "covered", "enforced", or "tested" must point at the specific thing that proves it — the `validate.mjs` anchor, the CI check, or the dated `docs/testing.md` row. No pointer, no claim; the sibling repo shipped a closed issue whose claimed validator coverage didn't exist (keng009/fulcra-dealflow-memory#21, caught by review) — same lesson applies here.
 
 ## Testing a change
 
