@@ -1,6 +1,6 @@
 # Cross-harness install matrix
 
-The skills are written to run on any agent harness that can load skill instructions and reach the Fulcra MCP server ([AGENTS.md](../AGENTS.md) exists for exactly this). Claims stay per-harness and evidence-backed: **reading the memory** from another assistant is proven at the platform level (any MCP client reads the same files/records); **running this flavor's skills** on a harness needs a green row here. This packet is flavor-untested everywhere — the engine's evidence lives in the [sibling's matrix](https://github.com/keng009/fulcra-dealflow-memory/blob/main/docs/harness-matrix.md) and is design evidence only (ADR-0007).
+The skills are written to run on any agent harness that can load skill instructions and reach the Fulcra MCP server ([AGENTS.md](../AGENTS.md) exists for exactly this). Claims stay per-harness and evidence-backed: **reading the memory** from another assistant is proven at the platform level (any MCP client reads the same files/records); **running this flavor's skills** on a harness needs a green row here. This packet is flavor-untested everywhere — the engine's evidence lives in the sibling's docs/harness-matrix.md (in [the sibling repo](https://github.com/keng009/fulcra-dealflow-memory) — on the v0.3.0 branch until its PR #28 merges) and is design evidence only (ADR-0007).
 
 | Harness | Install path | Last attempt | Result | Blockers / notes |
 |---|---|---|---|---|
