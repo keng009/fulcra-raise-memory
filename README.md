@@ -4,6 +4,15 @@ Two Claude skills that give your fundraise a memory, on your own [Fulcra](https:
 
 **Sibling packet**: [fulcra-dealflow-memory](https://github.com/keng009/fulcra-dealflow-memory) is the same engine flavored for the other side of the table — investors managing deal flow. Both can run on one account (disjoint `/raise/` and `/dealflow/` namespaces). See [ADR-0007](docs/adr/0007-sibling-product-fork.md).
 
+## Which skill do I install?
+
+| You want | Install | Commitment |
+|---|---|---|
+| A zero-commitment look — see the flow on your own month (or sample data), decide after | **`raise-demo`** | ~10 minutes; works on an empty account; nothing written until you say yes |
+| The product — ongoing capture, meeting prep, weekly momentum, going-cold alerts, CRM sync | **`raise-memory`** | The daily workflow; picks up anything the demo stored, no migration |
+
+Start with the demo if you're deciding; start with `raise-memory` if you're already sold. Both write the same formats to the same folder.
+
 ## See it in 10 minutes — `raise-demo`
 
 One guided session — about ten minutes once installed. The skill inspects your Fulcra data catalog, builds a **read-only snapshot of your last 30 days of investor conversations** from whatever you've connected (calendar, meeting tools), saves it as memory on a single yes — files versioned; the full skill adds a veto flow that can strike any saved item later — and generates a prep brief from what it just stored. Nothing is written until you say so; with no sources connected, it falls back to capturing one conversation conversationally. Think of it as the hello-world; `raise-memory` below is the product.
