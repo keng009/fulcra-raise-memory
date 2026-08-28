@@ -43,7 +43,7 @@ Then the real test is running the thing:
 
 ## Releasing
 
-Releases give investors ready-to-upload zips instead of clone-and-zip-yourself:
+Releases give founders ready-to-upload zips instead of clone-and-zip-yourself:
 
 1. `node scripts/validate.mjs` is green, any live-behavior change is recorded in [`docs/testing.md`](docs/testing.md) (dated, sanitized), and [`CHANGELOG.md`](CHANGELOG.md) has the version's user-visible changes moved out of Unreleased.
 2. Tag and push: `git tag v0.x.y && git push origin v0.x.y` — the release workflow validates, packages both skills with the folder at the zip root, and publishes the release with both zips attached.
