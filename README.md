@@ -44,6 +44,10 @@ Illustrative output — the demo generates one of these from your own logged con
 
 Keep it. If your Claude has CRM tools connected, `raise-memory` offers — once per session, never requires — to copy each logged conversation into it as a note on the matched contact. One-way, notes and tasks only: it never creates contacts and never edits fields or stages, so your tracker stays the system of record for the round. Adapters are capability-based — see [`skills/raise-memory/references/crm-sync.md`](skills/raise-memory/references/crm-sync.md) for the tiers, the tested reference (Attio, in the sibling packet's engine), and the 10-minute protocol for adding your own CRM. Your CRM is not copied into Fulcra: the memory holds the investors you're actually talking to, not a mirror of a thousand-fund list.
 
+## Why Fulcra?
+
+Because a raise runs for months across dozens of threads, and memory that lives inside one chat product is a silo. These skills use Fulcra as the account-level store that makes the rest honest: versioned files you can read, typed records software can query, and — the load-bearing part — **the same memory readable from every assistant you connect over MCP**. Where Fulcra is necessary, where it's merely convenient, and where the platform has limits the skills admit to: [docs/why-fulcra.md](docs/why-fulcra.md).
+
 ## Privacy
 
 These skills are instruction files: no backend of their own, no telemetry, nothing that reports back to the authors. They write to exactly two places in your Fulcra account: files under `/raise/`, and typed records in the **Raise Touchpoint** data type they create — plus, only if you accept the offer, notes in your own CRM. They never write credentials or secrets to any file and never send email or messages on your behalf: ask for a follow-up and you get a clearly labeled draft. File deletes in Fulcra are soft; typed records have no per-record delete — a vetoed item is excluded from every read but remains stored, and the skills say so rather than pretending otherwise.
