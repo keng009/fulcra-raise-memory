@@ -53,7 +53,7 @@ Illustrative output — the demo generates one of these from your own logged con
 
 ## Already have a CRM or investor tracker?
 
-Keep it. If your Claude has CRM tools connected, `raise-memory` offers — once per session, never requires — to copy each logged conversation into it as a note on the matched contact. One-way, notes and tasks only: it never creates contacts and never edits fields or stages, so your tracker stays the system of record for the round. Adapters are capability-based — see [`skills/raise-memory/references/crm-sync.md`](skills/raise-memory/references/crm-sync.md) for the tiers, the tested reference (Attio, in the sibling packet's engine), and the 10-minute protocol for adding your own CRM. Your CRM is not copied into Fulcra: the memory holds the investors you're actually talking to, not a mirror of a thousand-fund list.
+Keep it. If your Claude has CRM tools connected, `raise-memory` offers — once per session, never requires — to copy each logged conversation into it as a note on the matched contact. One-way, notes and tasks only: it never creates contacts and never edits fields or stages, so your tracker stays the system of record for the round. Adapters are capability-based — see [`skills/raise-memory/references/crm-sync.md`](skills/raise-memory/references/crm-sync.md) for the tiers, the tested reference (Attio, in the sibling packet's engine), and the 10-minute protocol for adding your own CRM. Your CRM is never mirrored into Fulcra: the memory holds the investors you're actually talking to, not a copy of a thousand-fund list. (Individual CRM notes about those investors can be imported as touchpoints on your say-so — selection, never mirroring.)
 
 ## Why Fulcra?
 
