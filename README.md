@@ -13,6 +13,8 @@ Two Claude skills that give your fundraise a memory, on your own [Fulcra](https:
 
 Start with the demo if you're deciding; start with `raise-memory` if you're already sold. Both write the same formats to the same folder.
 
+> **Pre-release note (this block is removed at the first release):** no release has been published yet — the "latest release" links below will work once v0.1.0 ships ([#1](https://github.com/keng009/fulcra-raise-memory/issues/1) is the gate). Until then, zip the skill folders yourself as the install steps describe.
+
 ## See it in 10 minutes — `raise-demo`
 
 One guided session — about ten minutes once installed. The skill inspects your Fulcra data catalog, builds a **read-only snapshot of your last 30 days of investor conversations** from whatever you've connected (calendar, meeting tools), saves it as memory on a single yes — files versioned; the full skill adds a veto flow that can strike any saved item later — and generates a prep brief from what it just stored. Nothing is written until you say so; with no sources connected, it falls back to capturing one conversation conversationally. Think of it as the hello-world; `raise-memory` below is the product.
@@ -59,7 +61,7 @@ Because a raise runs for months across dozens of threads, and memory that lives 
 
 ## Privacy
 
-These skills are instruction files: no backend of their own, no telemetry, nothing that reports back to the authors. They write to exactly two places in your Fulcra account: files under `/raise/`, and typed records in the **Raise Touchpoint** data type they create — plus, only if you accept the offer, notes in your own CRM. They never write credentials or secrets to any file and never send email or messages on your behalf: ask for a follow-up and you get a clearly labeled draft. File deletes in Fulcra are soft; typed records have no per-record delete — a vetoed item is excluded from every read but remains stored, and the skills say so rather than pretending otherwise.
+These skills are instruction files: no backend of their own, no telemetry, nothing that reports back to the authors. They write to exactly two places in your Fulcra account: files under `/raise/`, and typed records in the **Raise Touchpoint** data type they create — plus, only if you accept the offer, notes in your own CRM. They never write credentials or secrets to any file and never send email or messages on your behalf: ask for a follow-up and you get a clearly labeled draft. File deletes in Fulcra are soft; typed records have no per-record delete — a vetoed item is excluded from every read these skills perform but remains stored (other assistants reading the account should honor the `## Vetoed keys` list, which the contract documents), and the skills say so rather than pretending otherwise.
 
 ## Status — honest and current
 

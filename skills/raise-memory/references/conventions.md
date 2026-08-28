@@ -13,7 +13,7 @@ The shared data contract for the `raise-demo` and `raise-memory` skills: where f
 | `/raise/README.md` | What this folder is, which skills write to it, a pointer to these conventions, and the no-credentials rule: no credentials, tokens, or secrets are ever written to any file in this folder. |
 | `/raise/INDEX.md` | One line per file in the folder. Read at bootstrap; updated whenever a file is added. |
 | `/raise/relationships/<slug>.md` | One narrative file per person (GP, angel, associate, advisor). Dated touchpoint entries, newest first. |
-| `/raise/handoff.md` | Durable handoff: open follow-ups, pending intros, next actions — plus the `## Vetoed keys` list (dedupe keys the user has vetoed; every read excludes them, and no commit re-imports them; needed because typed records have no per-record delete). |
+| `/raise/handoff.md` | Durable handoff: open follow-ups, pending intros, next actions — plus the `## Vetoed keys` list (dedupe keys the user has vetoed; every read these skills perform excludes them, and no commit re-imports them; needed because typed records have no per-record delete — readers outside these skills must apply the list themselves) and the `## Sweep watermarks` list (one line per swept source: `- <source>: <ISO-8601 of last completed sweep>`; advanced only after a sweep's digest is fully resolved). |
 | `/raise/review-queue.md` | Ambiguous items from commits/backfill parked for the user's judgment, each with its evidence. Skills append; the user (or the user via any assistant) clears. Never written to any other store while queued. |
 
 ## Relationship file format
