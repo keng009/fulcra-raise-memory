@@ -21,7 +21,7 @@ One guided session — about ten minutes once installed. The skill inspects your
 
 1. Create a Fulcra account at [fulcra.ai](https://fulcra.ai) if you don't have one. An empty account is fine — the demo works without prior data.
 2. In Claude, open **Customize → Connectors** and connect **Fulcra**.
-3. Download `raise-demo.zip` from the [latest release](https://github.com/keng009/fulcra-raise-memory/releases/latest) (or zip the `skills/raise-demo` folder yourself) and upload it in Claude under **Customize → Skills → + Create skill → Upload a skill**. If Skills isn't visible, enable it under **Settings → Capabilities** first.
+3. Download `raise-demo.zip` from the [latest release](https://github.com/keng009/fulcra-raise-memory/releases/latest) *(none published yet — see the note above)* (or zip the `skills/raise-demo` folder yourself) and upload it in Claude under **Customize → Skills → + Create skill → Upload a skill**. If Skills isn't visible, enable it under **Settings → Capabilities** first.
 4. Start a new chat and say: **"run the Fulcra raise demo"**.
 
 ## Make it your workflow — `raise-memory`
@@ -29,7 +29,7 @@ One guided session — about ten minutes once installed. The skill inspects your
 The ongoing version: log investor conversations as they happen, prep before meetings, review the week by fund, catch investors going cold before the round loses momentum.
 
 1. Same Fulcra account and connector as above.
-2. Download `raise-memory.zip` from the [latest release](https://github.com/keng009/fulcra-raise-memory/releases/latest) (or zip the `skills/raise-memory` folder — its `references/` subfolder must travel inside the zip) and upload it the same way.
+2. Download `raise-memory.zip` from the [latest release](https://github.com/keng009/fulcra-raise-memory/releases/latest) *(none published yet — see the note above)* (or zip the `skills/raise-memory` folder — its `references/` subfolder must travel inside the zip) and upload it the same way.
 3. Say **"show me my last 30 days"**, **"log my call with Alex"**, **"have I talked to this fund before?"**, **"prep me for tomorrow"**, **"what moved this week"**, or **"which investors have gone cold"**.
 
 Only the Fulcra connector is required. If calendar data is reachable (in your Fulcra account or via a Claude calendar connector), the skill detects and uses it: conversations get corroborated against real meetings, and "prep me for tomorrow" reads the actual calendar. If a transcript tool (Otter, Zoom, Fireflies) is connected, it can log meetings straight from transcripts. Paste an investor's WhatsApp, LinkedIn, or iMessage thread and "log this" captures it too. Nothing to configure — each session it states what it found.
