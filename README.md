@@ -2,7 +2,7 @@
 
 Two Claude skills that give your fundraise a memory, on your own [Fulcra](https://fulcra.ai) account. Fulcra is a personal context platform: your account holds your data — calendars, files, custom records — and any AI assistant you connect to it over MCP reads and writes that same account. Every investor conversation you log — a GP intro, an angel call, a partner meeting — is stored twice: a narrative entry you can read, and a typed record software can query. From there: recall before the next meeting ("prep me for Alex"), fund history ("have I talked to Meridian before?"), momentum review ("what moved this week", grouped by fund with stage changes per your notes), and a list of investors going cold (45+ days). Optional one-way copy into your CRM or tracker. Because the memory lives in your account rather than inside any one chat product, it persists across sessions and across assistants — the whole raise, remembered.
 
-**Sibling packet**: [fulcra-dealflow-memory](https://github.com/keng009/fulcra-dealflow-memory) is the same engine flavored for the other side of the table — investors managing deal flow. Both can run on one account (disjoint `/raise/` and `/dealflow/` namespaces). See [ADR-0007](docs/adr/0007-sibling-product-fork.md).
+**Sibling packets**: [fulcra-dealflow-memory](https://github.com/keng009/fulcra-dealflow-memory) (investors managing deal flow — the engine's origin) and [fulcra-sales-memory](https://github.com/keng009/fulcra-sales-memory) (founders selling their own product) are the same engine flavored for different tables. All three can run on one account (disjoint `/dealflow/`, `/raise/`, and `/sales/` namespaces). See [ADR-0007](docs/adr/0007-sibling-product-fork.md).
 
 ## Which skill do I install?
 
