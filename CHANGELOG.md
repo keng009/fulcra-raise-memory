@@ -21,5 +21,7 @@ User-visible changes to the skill packet. Format follows [Keep a Changelog](http
 
 - **Extension guide** (`references/extending.md`): how to add a messaging surface (paste row, connector slots M1–M4, browser tier), a notetaker (transcript slots T1–T4 with the timezone/participants/empty-recording checks), a CRM (pointer to the 8-slot protocol), or a calendar surface (attendee emails + stable ids) — plus an honest per-surface table (WhatsApp, Telegram, Signal, iMessage/SMS, Messenger/Instagram, LinkedIn, Slack/Discord) and the contribution checklist. Messenger/Instagram paste row added; README and both registries point to it; CI checks the pointer.
 
+- **HubSpot claim corrected** (dealflow #49): the official connector is now write-capable; crm-sync.md carries the slot table and title-less dedupe mechanics; live-tested in the sales sibling, untested under this flavor.
+
 ### Release gate
 - First release requires the live runs listed in [docs/testing.md](docs/testing.md) — this flavor ships engine-proven but flavor-untested until then, and the README says so.
