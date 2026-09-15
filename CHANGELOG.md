@@ -15,5 +15,7 @@ User-visible changes to the skill packet. Format follows [Keep a Changelog](http
 
 - Browser-observation **account-risk posture** (engine-level, adapted from the sales sibling): inbox-only, two windows a day, read only what is new, the user's own browser profile only, stop-on-first-warning with backoff, no decoy activity, honest ToS disclosure.
 
+- **Connecting Fulcra guide** (`references/connect-fulcra.md`): both setup paths — Claude's app (account → Customize → Connectors → verify) and agent harnesses via Fulcra's official `fulcra-get-started` / `fulcra-connect` skills — with the honest line that no skill can create the account or authorize the connector itself. Both preflights and the README install steps point to it; CI now requires the pointer in every skill.
+
 ### Release gate
 - First release requires the live runs listed in [docs/testing.md](docs/testing.md) — this flavor ships engine-proven but flavor-untested until then, and the README says so.
