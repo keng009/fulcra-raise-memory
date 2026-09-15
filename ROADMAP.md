@@ -14,7 +14,7 @@ The capability-based adapter layers came over from the fork point; none is exerc
 
 - **Scheduled message-sweep digest** ([#5](https://github.com/keng009/fulcra-raise-memory/issues/5)): the behavior is now specified in the full skill (Tend rule 5) — investors go cold in DMs, not email; what remains is the live scheduled run that promotes it from designed to tested.
 - **Notes on the fund's deal/opportunity object** ([#6](https://github.com/keng009/fulcra-raise-memory/issues/6)): each tracker's own object model, never touching fields or stages.
-- Zero-touch auto-commit stays out of scope until its own ADR (consent-posture change, per-user opt-in).
+- Unattended auto-log: **accepted** as [ADR-0009](docs/adr/0009-unattended-auto-log.md) (ported from the sales sibling 2026-09-15) and implemented as Tend rule 6 — a standing, revocable, per-source yes with high-confidence-only eligibility, receipts, and a dead-Fulcra stop; email as a source ([ADR-0010](docs/adr/0010-email-as-a-source.md)) and the skill-built schedule (Tend rule 7, `references/scheduling.md`) came with it. All three are designed/untested under this flavor until their testing.md scenarios run here.
 
 ## Raise-specific features — earned, not guessed
 
