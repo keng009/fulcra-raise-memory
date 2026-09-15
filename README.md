@@ -55,6 +55,10 @@ Illustrative output — the demo generates one of these from your own logged con
 
 Keep it. If your Claude has CRM tools connected, `raise-memory` offers — once per session, never requires — to copy each logged conversation into it as a note on the matched contact. One-way, notes and tasks only: it never creates contacts and never edits fields or stages, so your tracker stays the system of record for the round. Adapters are capability-based — see [`skills/raise-memory/references/crm-sync.md`](skills/raise-memory/references/crm-sync.md) for the tiers, the tested reference (Attio, in the sibling packet's engine), and the 10-minute protocol for adding your own CRM. Your CRM is never mirrored into Fulcra: the memory holds the investors you're actually talking to, not a copy of a thousand-fund list. (Individual CRM notes about those investors can be imported as touchpoints on your say-so — selection, never mirroring.)
 
+## Extend it — your messaging app, notetaker, or CRM
+
+Everything here detects tools by capability, so an app that isn't named still works — paste a thread from any messenger and it logs. To make a source official (a paste-format row for Messenger or Signal, connector slots for a Telegram or iMessage reader, a new notetaker's timezone quirk, a calendar surface, or a CRM), [`references/extending.md`](skills/raise-memory/references/extending.md) has the per-source slots, the test to run, and the one PR to open. No claims without a testing row — "designed-for, untested" is an honest label here.
+
 ## Why Fulcra?
 
 Because a raise runs for months across dozens of threads, and memory that lives inside one chat product is a silo. These skills use Fulcra as the account-level store that makes the rest honest: versioned files you can read, typed records software can query, and — the load-bearing part — **the same memory readable from every assistant you connect over MCP**. Where Fulcra is necessary, where it's merely convenient, and where the platform has limits the skills admit to: [docs/why-fulcra.md](docs/why-fulcra.md).
