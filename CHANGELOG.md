@@ -19,5 +19,7 @@ User-visible changes to the skill packet. Format follows [Keep a Changelog](http
 
 - **Silent-failure rails** (engine-level, from a month of unattended production runs): an empty Fulcra calendar window is never read as a quiet day (check the other surface); `read_file`'s "No file found" can mask an expired token — `list_files` shows the real 401, retry once, and a dead Fulcra is a STOP with no CRM writes; Otter timestamps are Pacific (convert before matching to calendar); an empty recording means capture failed, not that the meeting didn't happen. Both skills' rails and the connect guide carry them; CI checks for the anchors.
 
+- **Extension guide** (`references/extending.md`): how to add a messaging surface (paste row, connector slots M1–M4, browser tier), a notetaker (transcript slots T1–T4 with the timezone/participants/empty-recording checks), a CRM (pointer to the 8-slot protocol), or a calendar surface (attendee emails + stable ids) — plus an honest per-surface table (WhatsApp, Telegram, Signal, iMessage/SMS, Messenger/Instagram, LinkedIn, Slack/Discord) and the contribution checklist. Messenger/Instagram paste row added; README and both registries point to it; CI checks the pointer.
+
 ### Release gate
 - First release requires the live runs listed in [docs/testing.md](docs/testing.md) — this flavor ships engine-proven but flavor-untested until then, and the README says so.
