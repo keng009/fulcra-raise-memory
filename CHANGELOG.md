@@ -23,5 +23,7 @@ User-visible changes to the skill packet. Format follows [Keep a Changelog](http
 
 - **HubSpot claim corrected** (dealflow #49): the official connector is now write-capable; crm-sync.md carries the slot table and title-less dedupe mechanics; live-tested in the sales sibling, untested under this flavor.
 
+- **Coexistence with other loggers** (ADR-0011 in the sales packet; engine-level): before any CRM note write, the contact's existing notes are scanned for the touchpoint's *source id* in any format (`[touch:…]`, `[otter:…]`, `Source:` lines, URLs), not just this packet's key — a hit from any other logger means skip, count as a duplicate, and name the note. Each packet stays complete on its own; two systems on one CRM never write the same conversation twice.
+
 ### Release gate
 - First release requires the live runs listed in [docs/testing.md](docs/testing.md) — this flavor ships engine-proven but flavor-untested until then, and the README says so.
