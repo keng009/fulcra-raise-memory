@@ -107,6 +107,16 @@ The itemized list shown immediately before the one collective yes — one line p
 **Sweep watermark**:
 The per-source cursor in `handoff.md` (`## Sweep watermarks`) that a scheduled sweep reads and advances — only after its digest is fully resolved — so repeated sweeps never rediscover the same messages.
 
+**Auto-log**:
+The standing, revocable yes for unattended sweeps (ADR-0009): a `- auto-log: <sources>` line under `## Preferences` in `handoff.md`. With it, a sweep commits only high-confidence items and parks the rest; without it, the sweep digests and asks. Turned on by "auto-log my calls", off by "stop auto-logging".
+
+**Sweep log**:
+The per-run receipt list in `handoff.md` (`## Sweep log`): one line per sweep — start time, sources, committed / parked / skipped-duplicate counts, failures. Newest 30 kept; older lines move to `sweep-log-archive.md`.
+
+**Email touchpoint**:
+A touchpoint distilled from a real email conversation with an external counterparty (ADR-0010): channel `email`, one per thread, keyed `touch:<tool>-thread:<id>`. Read only when the user opts into `email`; automated notifications are signals in the digest, never touchpoints.
+_Avoid_: inbox mirror
+
 ### The packet
 
 **The demo**:
