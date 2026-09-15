@@ -17,5 +17,7 @@ User-visible changes to the skill packet. Format follows [Keep a Changelog](http
 
 - **Connecting Fulcra guide** (`references/connect-fulcra.md`): both setup paths — Claude's app (account → Customize → Connectors → verify) and agent harnesses via Fulcra's official `fulcra-get-started` / `fulcra-connect` skills — with the honest line that no skill can create the account or authorize the connector itself. Both preflights and the README install steps point to it; CI now requires the pointer in every skill.
 
+- **Silent-failure rails** (engine-level, from a month of unattended production runs): an empty Fulcra calendar window is never read as a quiet day (check the other surface); `read_file`'s "No file found" can mask an expired token — `list_files` shows the real 401, retry once, and a dead Fulcra is a STOP with no CRM writes; Otter timestamps are Pacific (convert before matching to calendar); an empty recording means capture failed, not that the meeting didn't happen. Both skills' rails and the connect guide carry them; CI checks for the anchors.
+
 ### Release gate
 - First release requires the live runs listed in [docs/testing.md](docs/testing.md) — this flavor ships engine-proven but flavor-untested until then, and the README says so.
